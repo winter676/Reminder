@@ -1,53 +1,41 @@
 #include<stdio.h>
 #include<stdlib.h>
-#define M 993244853 ;
-
+#define M 993244853
+long long numA(long long m, long long n);
 long long f(long long n);
-int cmp(const void *a ,const void *b);
-long long comb_num(long long m, long long n);
+long long cmp(const void *a ,const void *b);
 
 long long A[610000];
+
 int main()
 {
-    long long n,output = 0,start = 0,finish = 0;
+    long long n,output = 1,judge = 0,numUsed = 0,start = 0,num=1;
     scanf("%lld",&n);
     for (long long i = 0; i < n; i++ ){
         scanf("%lld",&A[i]);
     }
     qsort(A,n,sizeof(long long),cmp);
-    while (finish < n){
-        while(A[finish] == A[finish+1]){
-            finish++;
+
+    while (start < n-1){
+        for (int i = start ;i < n -1 && A[i+1] == A[i]; i++){
+            num++;
         }
-        output += f(finish-start+1);
+        output *= numA(num,A[start]-numUsed);
         output %= M;
-        finish++;
-        start = finish;
+        numUsed += num;
+        start += num;
+        num = 1;
     }
+
     printf("%lld\n",output);
+
+    return 0;
 }
 
 
-long long comb_num(long long m, long long n)
+long long cmp(const void *a ,const void *b)
 {
-    if (n == 0 || m == n)
-    {
-        return 1ll;
-    }
-    if ( m < n )
-    {
-        return 0ll;
-    }
-    if ( n == 1 )
-    {
-        return m;
-    }
-    return comb_num(m-1, n) + comb_num(m-1, n-1);
-}
-
-int cmp(const void *a ,const void *b)
-{
-	return *(int *)a - *(int *)b ;			//从小到大排序，不能写成 return a < b 这种形式
+	return *(long long*)a - *(long long *)b ;			//从小到大排序，不能写成 return a < b 这种形式
 }
 
 long long f(long long n)
@@ -58,4 +46,18 @@ long long f(long long n)
     
     }
     return ( n * f(n-1) );
+}
+
+
+long long numA(long long m, long long n) {
+	long long res = 1;
+    for (long long i = 1; i <= m; i++) {
+	    res *= n;
+	    n--;
+        if (res >= M){
+            res %= M;
+        }
+	}
+    
+    return res;
 }
