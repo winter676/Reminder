@@ -11,14 +11,14 @@ long long findMinIndex(struct Move moving[],long long n,long long m);
 int main()
 {
     struct Move moving[1000];
-    long long n,m,sum = 0,min = 0,minIndex = 0;
+    long long n,m,sum = 0,min = 0,minIndex = 0,i;
 
     scanf("%lld%lld",&n,&m);
-    for (long long i = 0; i < n; i++ ){
+    for ( i = 0; i < n; i++ ){
         moving[i].isUsed = 0;
         scanf("%lld",&moving[i].list);
     }
-    for (long long i = 0; i < n; i++ ){
+    for ( i = 0; i < n; i++ ){
         minIndex = findMinIndex(moving,n,m);
         long long value = moving[minIndex].list-m;
         long long valueAbs = llabs(value);
@@ -34,10 +34,10 @@ int main()
 
 long long findMinIndex(struct Move moving[],long long n,long long m)
 {
-    long long min = -1;
+    long long min = -1,i;
     long long minIndex = -1;
 
-    for (long long i =  0; i < n; i++ ){
+    for ( i =  0; i < n; i++ ){
         if (moving[i].isUsed){
             continue;
         }
