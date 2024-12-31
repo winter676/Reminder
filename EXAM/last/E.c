@@ -18,7 +18,7 @@ int main()
         scanf("%d",&input[i].num);
         input[i].weight = getWeight(input[i].num);
     }
-    qsort(input->weight,n,sizeof(int),cmp);
+    qsort(input,n,sizeof(int),cmp);
     for (int i = 0; i < n -1 ; i++ ){
         int k = i;
         for (int j = i+1; j < n; j++ ){
@@ -54,5 +54,17 @@ int getWeight(int num)
 
 int cmp(const void *a ,const void *b)
 {
-	return *(int *)b - *(int *)a ;
+    struct bit *a1 = (struct bit *) a;
+    struct bit *b1 = (struct bit *) b;
+    if (a1->weight > b1->weight) return -1;
+    if (a1->weight < b1->weight) return 1;
+    if (a1->weight == a1->weight){
+        if (a1->num < a1->weight){
+        return 1;
+        }
+        if (a1->num < a1->weight){
+            return -1;
+        }
+    }
+    return 0;
 }
