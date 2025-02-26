@@ -10,9 +10,9 @@
                 "UNICODE",
                 "_UNICODE"
             ],
+            "compilerPath": "D:/Software/Scoop/apps/mingw/current/bin/gcc.exe",
             "cppStandard": "gnu++17",
-            "intelliSenseMode": "windows-gcc-x64",
-            "compilerPath": "D:/Software/Scoop/apps/mingw/current/bin/gcc.exe"
+            "intelliSenseMode": "gcc-x64"
         }
     ],
     "version": 4
